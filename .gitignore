@@ -1,0 +1,10 @@
+dist
+node_modules
+.env
+
+# VSCode
+.vscode
+
+.DS_Store
+.turbo
+.turbo/
