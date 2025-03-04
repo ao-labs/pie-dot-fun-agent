@@ -34,6 +34,7 @@ export * from "./switchboard";
 export * from "./elfa_ai";
 export * from "./debridge";
 export * from "./fluxbeam";
+export * from "./piefun";
 
 import type { SolanaAgentKit } from "../agent";
 import {
@@ -152,6 +153,8 @@ import {
   ElfaGetTopMentionsTool,
   ElfaAccountSmartStatsTool,
   SolanaFluxbeamCreatePoolTool,
+  PieFunListAllBaskets,
+  ListTopSolanaMindshareTokens,
 } from "./index";
 
 export function createSolanaTools(solanaKit: SolanaAgentKit) {
@@ -271,5 +274,7 @@ export function createSolanaTools(solanaKit: SolanaAgentKit) {
     new ElfaGetTopMentionsTool(solanaKit),
     new ElfaAccountSmartStatsTool(solanaKit),
     new SolanaFluxbeamCreatePoolTool(solanaKit),
+    new PieFunListAllBaskets(solanaKit),
+    new ListTopSolanaMindshareTokens(solanaKit),
   ];
 }
