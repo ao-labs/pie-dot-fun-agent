@@ -6,7 +6,6 @@ export * from "./flash";
 export * from "./gibwork";
 export * from "./jupiter";
 export * from "./lulo";
-export * from "./manifest";
 export * from "./solana";
 export * from "./agent";
 export * from "./metaplex";

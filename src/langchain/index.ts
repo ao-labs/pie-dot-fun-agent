@@ -6,7 +6,6 @@ export * from "./flash";
 export * from "./gibwork";
 export * from "./jupiter";
 export * from "./lulo";
-export * from "./manifest";
 export * from "./solana";
 export * from "./agent";
 export * from "./metaplex";
@@ -65,11 +64,6 @@ import {
   SolanaRaydiumCreateClmm,
   SolanaRaydiumCreateCpmm,
   SolanaOpenbookCreateMarket,
-  SolanaManifestCreateMarket,
-  SolanaLimitOrderTool,
-  SolanaBatchOrderTool,
-  SolanaCancelAllOrdersTool,
-  SolanaWithdrawAllTool,
   SolanaClosePosition,
   SolanaOrcaCreateCLMM,
   SolanaOrcaCreateSingleSideLiquidityPool,
@@ -190,11 +184,6 @@ export function createSolanaTools(solanaKit: SolanaAgentKit) {
     new SolanaRaydiumCreateClmm(solanaKit),
     new SolanaRaydiumCreateCpmm(solanaKit),
     new SolanaOpenbookCreateMarket(solanaKit),
-    new SolanaManifestCreateMarket(solanaKit),
-    new SolanaLimitOrderTool(solanaKit),
-    new SolanaBatchOrderTool(solanaKit),
-    new SolanaCancelAllOrdersTool(solanaKit),
-    new SolanaWithdrawAllTool(solanaKit),
     new SolanaMeteoraCreateDynamicPool(solanaKit),
     new SolanaMeteoraCreateDlmmPool(solanaKit),
     new SolanaClosePosition(solanaKit),
