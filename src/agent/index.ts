@@ -175,6 +175,8 @@ import {
   getTrendingTokensUsingElfaAi,
   getSmartTwitterAccountStats,
 } from "../tools/elfa_ai";
+import { listAllBaskets } from "../tools/piefun";
+import { listTopSolanaMindshareTokens } from "../tools/piefun/list_top_solana_mindshare_tokens";
 
 /**
  * Main class for interacting with Solana blockchain
@@ -1240,5 +1242,13 @@ export class SolanaAgentKit {
 
   async getTrendingTokensOnCoingecko() {
     return await getTrendingTokens(this);
+  }
+
+  async listAllBaskets() {
+    return await listAllBaskets();
+  }
+
+  async listTopSolanaMindshareTokens() {
+    return await listTopSolanaMindshareTokens();
   }
 }
