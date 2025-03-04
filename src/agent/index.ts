@@ -22,17 +22,12 @@ import {
   luloWithdraw,
   mintCollectionNFT,
   openbookCreateMarket,
-  manifestCreateMarket,
   raydiumCreateAmmV4,
   raydiumCreateClmm,
   raydiumCreateCpmm,
   registerDomain,
   request_faucet_funds,
   trade,
-  limitOrder,
-  batchOrder,
-  cancelAllOrders,
-  withdrawAll,
   closePerpTradeShort,
   closePerpTradeLong,
   openPerpTradeShort,
@@ -319,30 +314,6 @@ export class SolanaAgentKit {
     slippageBps: number = DEFAULT_OPTIONS.SLIPPAGE_BPS,
   ): Promise<string> {
     return trade(this, outputMint, inputAmount, inputMint, slippageBps);
-  }
-
-  async limitOrder(
-    marketId: PublicKey,
-    quantity: number,
-    side: string,
-    price: number,
-  ): Promise<string> {
-    return limitOrder(this, marketId, quantity, side, price);
-  }
-
-  async batchOrder(
-    marketId: PublicKey,
-    orders: OrderParams[],
-  ): Promise<string> {
-    return batchOrder(this, marketId, orders);
-  }
-
-  async cancelAllOrders(marketId: PublicKey): Promise<string> {
-    return cancelAllOrders(this, marketId);
-  }
-
-  async withdrawAll(marketId: PublicKey): Promise<string> {
-    return withdrawAll(this, marketId);
   }
 
   async openPerpTradeLong(
@@ -668,13 +639,6 @@ export class SolanaAgentKit {
       lotSize,
       tickSize,
     );
-  }
-
-  async manifestCreateMarket(
-    baseMint: PublicKey,
-    quoteMint: PublicKey,
-  ): Promise<string[]> {
-    return manifestCreateMarket(this, baseMint, quoteMint);
   }
 
   async getPythPriceFeedID(tokenSymbol: string): Promise<string> {
