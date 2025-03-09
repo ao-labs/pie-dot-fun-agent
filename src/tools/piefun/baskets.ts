@@ -14,7 +14,7 @@ const connection = new Connection(process.env.RPC_URL!);
 const pieProgram = new PieProgram(
   connection,
   "mainnet-beta",
-  process.env.QUICKNODE_RPC_ENDPOINT!,
+  process.env.RPC_URL!,
 );
 
 export async function listAllBaskets() {
@@ -63,9 +63,9 @@ export async function buyBasket(agent: SolanaAgentKit) {
   const wallet = new Wallet(agent.wallet);
 
   //@TODO: let agent handle the input params
-  const basketId = "6";
-  const basketAddress = "GdVNZZk7dM472DJxYaiK9M54PYLfGnTQCsv5zMWLNdgP";
-  const amount = 50000000;
+  const basketId = "4";
+  const basketAddress = "4qXQWiiJvA1PyTSunUF9wwyQuVVP5khXT7KNZc68t9y6";
+  const amount = 100000000;
   const priceRes = await fetch(
     `https://api.internal-pie.fun/v1/basketTokens/SOLANA/${basketAddress}/market?currency=CURRENCY_SOL`,
   );
@@ -143,8 +143,8 @@ export async function sellBasket(agent: SolanaAgentKit) {
   const wallet = new Wallet(agent.wallet);
 
   //@TODO: let agent handle the input params
-  const basketId = "6";
-  const basketAddress = "GdVNZZk7dM472DJxYaiK9M54PYLfGnTQCsv5zMWLNdgP";
+  const basketId = "4";
+  const basketAddress = "4qXQWiiJvA1PyTSunUF9wwyQuVVP5khXT7KNZc68t9y6";
 
   let serializedTxs: string[] = [];
   const tokenInfo = await getTokenListFromSolanaClient();
