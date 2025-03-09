@@ -2,18 +2,13 @@ import markdownToHtml from "@/utils/markdownToHTML";
 import type { Message } from "ai/react";
 import { useMemo } from "react";
 
-export function ChatMessageBubble(props: {
-  message: Message;
-  aiEmoji?: string;
-  sources: any[];
-}) {
+export function ChatMessageBubble(props: { message: Message; sources: any[] }) {
   const colorClassName =
     props.message.role === "user"
-      ? "bg-[#D16E1033]"
-      : "bg-[#ECEDF1] text-black";
+      ? "bg-[#2D3D0A] text-white"
+      : "text-[#AEFF00]";
   const alignmentClassName =
     props.message.role === "user" ? "ml-auto" : "mr-auto";
-  const prefix = props.message.role === "user" ? "🧑" : props.aiEmoji;
 
   const content = useMemo(() => {
     return markdownToHtml(props.message.content);
@@ -23,10 +18,9 @@ export function ChatMessageBubble(props: {
     <div
       className={`${alignmentClassName} ${colorClassName} rounded px-4 py-2 max-w-[80%] mb-8 flex`}
     >
-      <div className="mr-2">{prefix}</div>
       <div className="flex flex-col">
         <div
-          className="prose prose-lg max-w-none"
+          className="prose-lg max-w-none"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
         {props.sources && props.sources.length ? (

@@ -103,7 +103,7 @@
     "isomorphic-dompurify": "^2.19.0",
     "langchain": "^0.3.5",
     "marked": "^15.0.4",
-    "next": "^14.2.3",
+    "next": "15.2.1",
     "openai": "^4.77.0",
     "postcss": "8.4.27",
     "puppeteer": "^24.3.1",

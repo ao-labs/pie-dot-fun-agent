@@ -1,7 +1,4 @@
 import "./globals.css";
-import { Public_Sans } from "next/font/google";
-
-const publicSans = Public_Sans({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -31,9 +28,17 @@ export default function RootLayout({
         />
         <meta name="twitter:image" content="/images/title-card.png" />
       </head>
-      <body className={publicSans.className}>
-        <div className="flex flex-col p-4 md:p-12 h-[100vh]">{children}</div>
+      <body>
+        <div className="flex flex-col  h-[100vh]">{children}</div>
       </body>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+      </style>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+      </style>
     </html>
   );
 }

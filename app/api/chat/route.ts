@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const messages = body.messages ?? [];
 
-    console.log(messages);
+    console.log("Incoming messages:", messages);
 
     const eventStream = agent.streamEvents(
       {
