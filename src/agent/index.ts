@@ -177,6 +177,7 @@ import {
 } from "../tools/elfa_ai";
 import { listAllBaskets } from "../tools/piefun";
 import { listTopSolanaMindshareTokens } from "../tools/piefun/list_top_solana_mindshare_tokens";
+import {createBasket, CreateBasketParams} from "@/src/tools/piefun/create_basket";
 
 /**
  * Main class for interacting with Solana blockchain
@@ -1246,6 +1247,10 @@ export class SolanaAgentKit {
 
   async listAllBaskets() {
     return await listAllBaskets();
+  }
+
+  async createBasket(params: CreateBasketParams) {
+    return await createBasket(params)
   }
 
   async listTopSolanaMindshareTokens() {

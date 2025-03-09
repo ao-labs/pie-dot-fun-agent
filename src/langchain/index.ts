@@ -1,3 +1,5 @@
+import {PieFunCreateBasket} from "@/src/langchain/piefun/create_basket";
+
 export * from "./adrena";
 export * from "./alldomains";
 export * from "./dexscreener";
@@ -275,6 +277,7 @@ export function createSolanaTools(solanaKit: SolanaAgentKit) {
     new ElfaAccountSmartStatsTool(solanaKit),
     new SolanaFluxbeamCreatePoolTool(solanaKit),
     new PieFunListAllBaskets(solanaKit),
+    new PieFunCreateBasket(solanaKit),
     new ListTopSolanaMindshareTokens(solanaKit),
   ];
 }
