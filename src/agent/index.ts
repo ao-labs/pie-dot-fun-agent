@@ -175,9 +175,13 @@ import {
   getTrendingTokensUsingElfaAi,
   getSmartTwitterAccountStats,
 } from "../tools/elfa_ai";
-import { listAllBaskets } from "../tools/piefun";
-import { listTopSolanaMindshareTokens } from "../tools/piefun/list_top_solana_mindshare_tokens";
-
+import {
+  listAllBaskets,
+  getAllBasketTokenBalance,
+  listTopSolanaMindshareTokens,
+  buyBasket,
+  sellBasket,
+} from "../tools/piefun";
 /**
  * Main class for interacting with Solana blockchain
  * Provides a unified interface for token operations, NFT management, trading and more
@@ -1250,5 +1254,17 @@ export class SolanaAgentKit {
 
   async listTopSolanaMindshareTokens() {
     return await listTopSolanaMindshareTokens();
+  }
+
+  async getAllBasketTokenBalance() {
+    return await getAllBasketTokenBalance(this.wallet_address.toBase58());
+  }
+
+  async buyBasket() {
+    return await buyBasket(this);
+  }
+
+  async sellBasket() {
+    return await sellBasket(this);
   }
 }

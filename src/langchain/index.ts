@@ -156,6 +156,11 @@ import {
   PieFunListAllBaskets,
   ListTopSolanaMindshareTokens,
 } from "./index";
+import {
+  PieFunBuyBasket,
+  PieFunGetAllBasketTokenBalance,
+  PieFunSellBasket,
+} from "./piefun/baskets";
 
 export function createSolanaTools(solanaKit: SolanaAgentKit) {
   return [
@@ -276,5 +281,8 @@ export function createSolanaTools(solanaKit: SolanaAgentKit) {
     new SolanaFluxbeamCreatePoolTool(solanaKit),
     new PieFunListAllBaskets(solanaKit),
     new ListTopSolanaMindshareTokens(solanaKit),
+    new PieFunGetAllBasketTokenBalance(solanaKit),
+    new PieFunBuyBasket(solanaKit),
+    new PieFunSellBasket(solanaKit),
   ];
 }
