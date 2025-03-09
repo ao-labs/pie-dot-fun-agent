@@ -2,11 +2,16 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function Home() {
   const InfoCard = (
-    <div className="p-4 md:p-8 rounded bg-[#D16E1033] w-full max-h-[85%] overflow-hidden">
-      <h1 className="text-3xl md:text-4xl mb-4">
-        Pie.Fun Super Smart AI Agent
-      </h1>
-      <p>
+    <div className="w-full overflow-hidden text-center mb-[50vh]">
+      <div
+        className="w-[800px] h-[200px] mx-auto mt-[-100px] mb-[20px]"
+        style={{
+          background:
+            "radial-gradient(50% 50% at 50% 50%, #AEFF00 0%, rgba(174, 255, 0, 0) 100%)",
+        }}
+      ></div>
+      <h1 className="text-5xl mb-2">Pie.Fun Super Smart AI Agent</h1>
+      <p className="text-sm text-[#9BAE73]">
         Ask me anything about Pie.Fun. I&apos;m your friendly Pie.Fun agent!
       </p>
     </div>
@@ -14,9 +19,7 @@ export default function Home() {
   return (
     <ChatWindow
       endpoint="api/chat"
-      emoji="🥧"
-      titleText="Pie.Fun Super Smart AI Agent"
-      placeholder="I'm your friendly Pie.Fun agent! Ask me anything..."
+      placeholder="Ask me anything."
       emptyStateComponent={InfoCard}
     ></ChatWindow>
   );

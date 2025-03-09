@@ -3,14 +3,20 @@
 @tailwind utilities;
 
 body {
-  color: #161514;
-  background: #fff;
+  color: #fff;
+  background: radial-gradient(50% 50% at 50% 50%, #171E0C 0%, #131413 100%);
+  font-family: "Quantico", sans-serif;
+}
+
+h1 {
+  font-family: "Doto", sans-serif;
+  color: #AEFF00;
 }
 
 body input,
 body textarea {
-  color: black;
-  border: 10px solid #d16e1033;
+  background: rgba(174, 255, 0, 0.2);
+  outline: none; 
 }
 
 a {
@@ -19,10 +25,6 @@ a {
 
 a:hover {
   border-bottom: 1px solid;
-}
-
-p {
-  margin: 8px 0;
 }
 
 code {

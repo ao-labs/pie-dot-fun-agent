@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Message } from "ai";
 import { useChat } from "ai/react";
-import { useRef, useState, ReactElement } from "react";
+import { useRef, useState, ReactElement, useEffect } from "react";
 import type { FormEvent } from "react";
 
 import { ChatMessageBubble } from "@/components/ChatMessageBubble";
@@ -15,8 +15,6 @@ export function ChatWindow(props: {
   endpoint: string;
   emptyStateComponent: ReactElement;
   placeholder?: string;
-  titleText?: string;
-  emoji?: string;
   showIntermediateStepsToggle?: boolean;
 }) {
   const messageContainerRef = useRef<HTMLDivElement | null>(null);
@@ -25,9 +23,7 @@ export function ChatWindow(props: {
     endpoint,
     emptyStateComponent,
     placeholder,
-    titleText = "An LLM",
     showIntermediateStepsToggle,
-    emoji,
   } = props;
 
   const [showIntermediateSteps, setShowIntermediateSteps] = useState(false);
@@ -166,47 +162,62 @@ export function ChatWindow(props: {
     }
   }
 
+  useEffect(() => {
+    if (chatEndpointIsLoading) {
+      console.log({ chatEndpointIsLoading, messages });
+      setMessages([
+        ...messages,
+        {
+          id: messages.length.toString(),
+          content: "Looking into it...",
+          role: "assistant",
+        },
+      ]);
+    }
+  }, [chatEndpointIsLoading]);
+
   return (
     <div
-      className={`flex flex-col items-center p-4 md:p-8 rounded grow overflow-hidden ${messages.length > 0 ? "border" : ""}`}
+      className={`flex flex-col items-center grow overflow-hidden ${messages.length > 0 ? "border" : ""}
+				bg-[url('/images/img_agent.png')] bg-[length:50vh_auto] bg-bottom bg-no-repeat
+				`}
     >
-      <h2 className={`${messages.length > 0 ? "" : "hidden"} text-2xl`}>
-        {emoji} {titleText}
-      </h2>
-      {messages.length === 0 ? emptyStateComponent : ""}
-      <div
-        className="flex flex-col-reverse w-full mb-4 overflow-auto transition-[flex-grow] ease-in-out"
-        ref={messageContainerRef}
-      >
-        {messages.length > 0
-          ? [...messages].reverse().map((m, i) => {
-              const sourceKey = (messages.length - 1 - i).toString();
-              return m.role === "system" ? (
-                <IntermediateStep key={m.id} message={m}></IntermediateStep>
-              ) : (
-                <ChatMessageBubble
-                  key={m.id}
-                  message={m}
-                  aiEmoji={emoji}
-                  sources={sourcesForMessages[sourceKey]}
-                ></ChatMessageBubble>
-              );
-            })
-          : ""}
-      </div>
+      {messages.length === 0 ? (
+        emptyStateComponent
+      ) : (
+        <div
+          className="flex flex-col-reverse w-[60vw] m-4 p-4 overflow-auto transition-[flex-grow] ease-in-out bg-[rgba(0,0,0,0.9)] rounded min-h-[80vh]"
+          ref={messageContainerRef}
+        >
+          {messages.length > 0
+            ? [...messages].reverse().map((m, i) => {
+                const sourceKey = (messages.length - 1 - i).toString();
+                return m.role === "system" ? (
+                  <IntermediateStep key={m.id} message={m}></IntermediateStep>
+                ) : (
+                  <ChatMessageBubble
+                    key={m.id}
+                    message={m}
+                    sources={sourcesForMessages[sourceKey]}
+                  ></ChatMessageBubble>
+                );
+              })
+            : ""}
+        </div>
+      )}
 
       <form onSubmit={sendMessage} className="flex w-full flex-col">
         <div className="flex">{intemediateStepsToggle}</div>
-        <div className="flex w-full mt-4">
+        <div className="flex flex-col w-[60vw] p-4 bg-[rgba(0,0,0,0.9)] mx-auto">
           <input
-            className="grow mr-8 p-4 rounded"
+            className="grow p-4 rounded"
             value={input}
             placeholder={placeholder ?? "What's it like to be a pirate?"}
             onChange={handleInputChange}
           />
           <button
             type="submit"
-            className="shrink-0 px-8 py-4 bg-[#D16E10] rounded w-28"
+            className="shrink-0 px-8 py-4 bg-[#AEFF00] rounded w-28 text-black mt-4 self-end"
           >
             <div
               role="status"
@@ -214,7 +225,7 @@ export function ChatWindow(props: {
             >
               <svg
                 aria-hidden="true"
-                className="w-6 h-6 text-white animate-spin dark:text-white fill-[#D16E10]"
+                className="w-6 h-6 text-black animate-spin fill-[#9BAE73]"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
